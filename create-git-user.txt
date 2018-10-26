@@ -1,0 +1,7 @@
+sudo adduser --quiet --shell /usr/bin/git-shell --disabled-password --home /var/lib/git --system git
+sudo -u git mkdir -p /var/lib/git/.ssh
+sudo -u git chmod u+rwx,og-rwx /var/lib/git/.ssh
+sudo -u git touch /var/lib/git/.ssh/authorized_keys
+sudo -u git chmod u+rw,og-rwx /var/lib/git/.ssh/authorized_keys
+cat <public_key> | sudo -u git tee -a /var/lib/git/.ssh/authorized_keys
+cd /var/lib/git ; sudo -u git mkdir reponame && cd reponame && sudo -u git git init --bare
